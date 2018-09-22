@@ -1,5 +1,5 @@
 // Read existing notes from localStorage
-const getSavedNotes =  () => {
+const getSavedNotes = () => {
     const notesJSON = localStorage.getItem('notes')
 
     if (notesJSON !== null) {
@@ -15,7 +15,7 @@ const saveNotes = (notes) => {
 }
 
 // Remove a note from the list
-const removeNote =  (id) => {
+const removeNote = (id) => {
     const noteIndex = notes.findIndex((note) => note.id === id)
 
     if (noteIndex > -1) {
@@ -32,7 +32,7 @@ const generateNoteDOM = (note) => {
     // Setup the remove note button
     button.textContent = 'x'
     noteEl.appendChild(button)
-    button.addEventListener('click',  () => {
+    button.addEventListener('click', () => {
         removeNote(note.id)
         saveNotes(notes)
         renderNotes(notes, filters)
@@ -53,7 +53,7 @@ const generateNoteDOM = (note) => {
 //sort your notes by one of three ways
 const sortNotes = (notes, sortBy) => {
     if (sortBy === 'byEdited') {
-        return notes.sort( (a, b) => {
+        return notes.sort((a, b) => {
             if (a.updatedAt > b.updatedAt) {
                 return -1
             } else if (a.updatedAt < b.updatedAt) {
@@ -63,7 +63,7 @@ const sortNotes = (notes, sortBy) => {
             }
         })
     } else if (sortBy === 'byCreated') {
-        return notes.sort( (a, b) => {
+        return notes.sort((a, b) => {
             if (a.createdAt > b.createdAt) {
                 return -1
             } else if (a.createdAt < b.createdAt) {
@@ -94,9 +94,7 @@ const renderNotes = (notes, filters) => {
     notes = sortNotes(notes, filters.sortBy)
 
 
-    const filteredNotes = notes.filter( (note) => {
-        return note.title.toLowerCase().includes(filters.searchText.toLowerCase())
-    })
+    const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(filters.searchText.toLowerCase()))
 
     document.querySelector('#notes').innerHTML = ''
 
