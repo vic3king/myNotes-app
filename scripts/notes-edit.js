@@ -50,3 +50,4 @@ window.addEventListener('storage', (e) => {
         dateElement.textContent = generateLastEdited(note.updatedAt)
     }
 })
+// vic3King<<<<<<
